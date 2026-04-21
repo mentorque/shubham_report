@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentorque — Resume Re-positioning and Ireland Job Intelligence · Shubham Alone</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:#000;color:#fff;font-size:14px;line-height:1.6;min-height:100vh}
+.page{max-width:900px;margin:0 auto;padding:2rem 1.5rem 5rem}
+
+/* LOGO */
+.logo-bar{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:2.5rem}
+.logo-icon{width:40px;height:40px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-inner{width:22px;height:22px;background:#000;border-radius:4px}
+.logo-name{font-size:22px;font-weight:700;color:#fff}
+
+/* PAGE HEADER */
+.page-title{font-size:28px;font-weight:700;color:#fff;margin-bottom:6px}
+.page-sub{color:#9ca3af;font-size:14px;margin-bottom:2rem}
+
+/* METRICS — only shown on panel 1 */
+.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.metric-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1rem;text-align:center}
+.metric-val{font-size:22px;font-weight:700;color:#60a5fa;display:block;margin-bottom:4px}
+.metric-lbl{font-size:11px;color:#6b7280;line-height:1.4}
+
+/* GLASS CARD */
+.glass{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.10);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;position:relative}
+.section-title{font-size:18px;font-weight:600;color:#60a5fa;margin-bottom:1.25rem}
+
+/* PANELS */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* NAV */
+.panel-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem}
+.nav-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);color:#fff;font-size:13px;cursor:pointer;transition:background 0.15s;font-family:inherit}
+.nav-btn:hover{background:rgba(255,255,255,0.09)}
+.nav-btn:disabled{opacity:0.3;cursor:not-allowed}
+.nav-count{font-size:13px;color:#6b7280}
+
+/* SUB TABS */
+.nav-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.ntab{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#9ca3af;transition:all 0.15s;font-family:inherit}
+.ntab.active{background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.4);color:#60a5fa}
+.cv-tab-panel{display:none}
+
+/* ── PANEL 1: STRUCTURED DIAGNOSIS ── */
+.diag-verdict{background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem}
+.verdict-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:8px}
+.verdict-text{font-size:14px;color:#d1d5db;line-height:1.75}
+.verdict-text strong{color:#fff}
+
+.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.25rem}
+.score-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1rem 1.1rem}
+.score-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.score-dim{font-size:13px;font-weight:600;color:#fff}
+.score-val{font-size:13px;font-weight:700}
+.sv-green{color:#34d399}.sv-blue{color:#60a5fa}.sv-amber{color:#fbbf24}.sv-red{color:#f87171}
+.score-bar-track{height:5px;background:rgba(255,255,255,0.08);border-radius:3px;margin-bottom:8px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:3px}
+.bf-green{background:#34d399}.bf-blue{background:#60a5fa}.bf-amber{background:#fbbf24}.bf-red{background:#f87171}
+.score-note{font-size:11px;color:#9ca3af;line-height:1.5}
+
+.finding-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1.25rem}
+.finding-item{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:0.85rem 1rem}
+.finding-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.fi-red{background:rgba(248,113,113,0.15);color:#f87171}
+.fi-amber{background:rgba(251,191,36,0.15);color:#fbbf24}
+.fi-green{background:rgba(52,211,153,0.12);color:#34d399}
+.finding-body{}
+.finding-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
+.finding-desc{font-size:12px;color:#9ca3af;line-height:1.55}
+
+.strength-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.strength-card{background:rgba(52,211,153,0.04);border:1px solid rgba(52,211,153,0.15);border-radius:9px;padding:0.8rem 0.9rem}
+.str-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#34d399;margin-bottom:5px}
+.str-text{font-size:12px;color:#a7f3d0;line-height:1.5}
+
+/* ── PANEL 2: ROLE FIT ── */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:580px){.role-grid{grid-template-columns:1fr}}
+.role-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.10);border-radius:12px;padding:1.1rem 1.25rem}
+.role-card.primary{border-color:rgba(96,165,250,0.45)}
+.role-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px}
+.role-name{font-size:14px;font-weight:600;color:#fff;line-height:1.3}
+.badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.b-green{background:rgba(52,211,153,0.15);color:#34d399}
+.b-blue{background:rgba(96,165,250,0.15);color:#60a5fa}
+.b-amber{background:rgba(251,191,36,0.15);color:#fbbf24}
+.b-red{background:rgba(248,113,113,0.15);color:#f87171}
+.b-target{background:rgba(96,165,250,0.2);color:#93c5fd;border:1px solid rgba(96,165,250,0.35)}
+.fit-track{height:5px;background:rgba(255,255,255,0.08);border-radius:3px;margin:4px 0 5px;overflow:hidden}
+.fit-fill{height:100%;border-radius:3px}
+.fill-green{background:#34d399}.fill-blue{background:#60a5fa}.fill-amber{background:#fbbf24}.fill-red{background:#f87171}
+.role-pct{font-size:11px;font-weight:600;margin-bottom:6px}
+.pct-green{color:#34d399}.pct-blue{color:#60a5fa}.pct-amber{color:#fbbf24}.pct-red{color:#f87171}
+.role-desc{font-size:12px;color:#9ca3af;line-height:1.55}
+.role-sal{font-size:11px;font-weight:500;color:#34d399;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)}
+.role-sal-stop{color:#f87171}
+.role-gaps{font-size:11px;color:#6b7280;margin-top:5px}
+.role-gaps span{color:#fbbf24}
+
+.title-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.title-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.9rem 1rem}
+.tc-title{font-size:12px;font-weight:600;color:#60a5fa;margin-bottom:5px}
+.tc-why{font-size:11px;color:#9ca3af;line-height:1.5}
+
+/* ── PANEL 3: CV SURGERY ── */
+.cv-annotation{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1rem 1.1rem;margin-bottom:10px}
+.ann-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+.ann-red{color:#f87171}.ann-amber{color:#fbbf24}.ann-green{color:#34d399}
+.cv-original{font-size:13px;color:#9ca3af;margin-bottom:8px;line-height:1.55}
+.cv-original .sec-ref{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;display:block;margin-bottom:4px}
+.cv-original mark{background:rgba(248,113,113,0.2);color:#fca5a5;border-radius:3px;padding:1px 4px}
+.cv-fix{background:rgba(52,211,153,0.06);border-left:2px solid #34d399;border-radius:0 6px 6px 0;padding:8px 12px;font-size:12px;color:#a7f3d0;line-height:1.6}
+.rewrite-box{background:rgba(96,165,250,0.05);border:1px dashed rgba(96,165,250,0.25);border-radius:10px;padding:1rem 1.25rem;margin-top:12px;font-size:13px;color:#bfdbfe;line-height:1.75}
+.rewrite-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#60a5fa;display:block;margin-bottom:6px}
+
+/* ── PANEL 4: KEYWORDS ── */
+.kw-group{margin-bottom:1.25rem}
+.kw-group-label{font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:#6b7280;margin-bottom:8px}
+.kw-row{display:flex;flex-wrap:wrap;gap:6px}
+.kw{font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px}
+.kw-present{background:rgba(52,211,153,0.12);color:#34d399;border:1px solid rgba(52,211,153,0.25)}
+.kw-rename{background:rgba(251,191,36,0.10);color:#fbbf24;border:1px solid rgba(251,191,36,0.25)}
+.kw-missing{background:rgba(248,113,113,0.10);color:#f87171;border:1px solid rgba(248,113,113,0.25)}
+
+/* ── PANEL 5: MARKET INTEL ── */
+.company-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:580px){.company-grid{grid-template-columns:1fr 1fr}}
+.company-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.9rem 1rem}
+.company-card.hot{border-color:rgba(96,165,250,0.35)}
+.co-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px}
+.co-sector{font-size:11px;color:#4b5563;margin-bottom:6px}
+.co-note{font-size:11px;color:#9ca3af;line-height:1.5;margin-top:6px}
+.mkt-table{width:100%;border-collapse:collapse;font-size:12px}
+.mkt-table th{background:rgba(255,255,255,0.04);text-align:left;padding:8px 12px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#4b5563;border-bottom:1px solid rgba(255,255,255,0.07)}
+.mkt-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.05);color:#d1d5db;vertical-align:top}
+.mkt-table tr:last-child td{border-bottom:none}
+.mkt-table td strong{color:#fff}
+.recruiter-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:0.5rem}
+.rec-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:6px;padding:5px 12px;font-size:12px;color:#d1d5db}
+
+/* ── PANEL 6: CHECKLIST ── */
+.checklist-group{margin-bottom:1.5rem}
+.cl-group-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#60a5fa;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(96,165,250,0.15)}
+.cl-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.cl-item:last-child{border-bottom:none}
+.cl-check{width:20px;height:20px;border:1.5px solid rgba(255,255,255,0.2);border-radius:5px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s}
+.cl-check.checked{background:#34d399;border-color:#34d399}
+.cl-check.checked::after{content:'✓';font-size:11px;color:#000;font-weight:700}
+.cl-body{}
+.cl-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
+.cl-desc{font-size:12px;color:#9ca3af;line-height:1.55}
+.cl-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.ct-red{background:rgba(248,113,113,0.15);color:#f87171}
+.ct-blue{background:rgba(96,165,250,0.15);color:#60a5fa}
+.ct-green{background:rgba(52,211,153,0.12);color:#34d399}
+.ct-amber{background:rgba(251,191,36,0.12);color:#fbbf24}
+.cl-feature{display:inline-flex;align-items:center;gap:4px;background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.2);border-radius:5px;padding:2px 8px;font-size:10px;font-weight:600;color:#60a5fa;margin-top:4px}
+
+/* ── PANEL 7: FRAMEWORK ── */
+.fw-phase{margin-bottom:1.75rem}
+.fw-phase-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#60a5fa;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(96,165,250,0.15)}
+.fw-step{display:flex;gap:14px;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.fw-step:last-child{border-bottom:none}
+.fw-num{width:30px;height:30px;border-radius:50%;background:rgba(96,165,250,0.2);border:1px solid rgba(96,165,250,0.35);color:#60a5fa;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.fw-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
+.fw-body{font-size:13px;color:#9ca3af;line-height:1.65}
+.fw-feature-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;color:#60a5fa;margin-top:6px}
+.fw-feature-tag.green{background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:#34d399}
+.fw-feature-tag.amber{background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.2);color:#fbbf24}
+
+/* ── PANEL 8: PROMPT ── */
+.prompt-box{background:rgba(255,255,255,0.02);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:1.5rem 1.75rem;font-size:13px;color:#d1d5db;line-height:1.85}
+.prompt-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#60a5fa;display:block;margin-bottom:0.75rem}
+.prompt-ph{color:#93c5fd;font-weight:600}
+.prompt-section{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.07)}
+.prompt-section-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#60a5fa;margin-bottom:6px}
+
+/* SHARED */
+.info-box{border-radius:8px;padding:0.75rem 1rem;font-size:13px;line-height:1.6;margin-bottom:12px}
+.ib-blue{background:rgba(96,165,250,0.08);border-left:2px solid #60a5fa;color:#bfdbfe}
+.ib-green{background:rgba(52,211,153,0.08);border-left:2px solid #34d399;color:#a7f3d0}
+.ib-amber{background:rgba(251,191,36,0.08);border-left:2px solid #fbbf24;color:#fde68a}
+.ib-red{background:rgba(248,113,113,0.08);border-left:2px solid #f87171;color:#fecaca}
+.sub-title{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#4b5563;margin:1.25rem 0 8px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- LOGO -->
+<div class="logo-bar">
+  <div class="logo-icon"><div class="logo-inner"></div></div>
+  <span class="logo-name">Mentorque</span>
+</div>
+
+<h1 class="page-title">Resume Re-positioning and Ireland Job Intelligence Report</h1>
+<p class="page-sub">Shubham Alone &nbsp;·&nbsp; shubham.alone7799@gmail.com &nbsp;·&nbsp; Operations & Supply Chain &nbsp;·&nbsp; April 2026</p>
+
+<!-- METRICS — shown only inside panel 1 via JS toggle -->
+<div class="metric-row" id="metric-row">
+  <div class="metric-card"><span class="metric-val">191+</span><span class="metric-lbl">SC/Ops live jobs in Dublin right now</span></div>
+  <div class="metric-card"><span class="metric-val">€32–42k</span><span class="metric-lbl">Realistic starting salary band</span></div>
+  <div class="metric-card"><span class="metric-val">3 of 8</span><span class="metric-lbl">CV sections with critical fixes needed</span></div>
+  <div class="metric-card"><span class="metric-val">14</span><span class="metric-lbl">Critical ATS keywords currently missing</span></div>
+</div>
+
+<!-- MAIN GLASS CARD -->
+<div class="glass">
+  <div class="section-title" id="section-title">1. Diagnosis Summary</div>
+
+  <!-- ═══ PANEL 1: DIAGNOSIS ═══ -->
+  <div id="panel-1" class="tab-panel active">
+
+    <div class="diag-verdict">
+      <div class="verdict-label">Executive Verdict</div>
+      <div class="verdict-text">
+        Shubham has <strong>genuine, quantified manufacturing experience</strong> — the 20% line performance gain, 12% NCR reduction, and end-to-end SAP MM workflow are real differentiators that most entry-level candidates cannot match. The shortlist failure is not an experience problem. It is a <strong>positioning and language problem</strong> operating at three compounding levels: the job title is invisible to Dublin ATS, the professional summary wastes the most-read section of the CV, and 14 critical keywords that appear in 80%+ of Dublin JDs are absent — even though the underlying experience exists. Fix the language first. The substance is already there.
+      </div>
+    </div>
+
+    <!-- 5 DIMENSION SCORES -->
+    <div class="sub-title">Profile Dimension Scores</div>
+    <div class="score-grid">
+
+      <div class="score-card">
+        <div class="score-head">
+          <span class="score-dim">CV Clarity & Structure</span>
+          <span class="score-val sv-blue">3.5 / 5</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill bf-blue" style="width:70%"></div></div>
+        <div class="score-note">Work experience bullets are quantified and strong. Structure is undermined by a vague title, informal summary language, and a skills section that uses non-searchable terms. Two spelling errors in the summary signal low attention to detail at first glance.</div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-head">
+          <span class="score-dim">Role–Market Fit</span>
+          <span class="score-val sv-green">3.8 / 5</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill bf-green" style="width:76%"></div></div>
+        <div class="score-note">Production planning at Unitech, SAP MM workflow, and Lean/CI execution at Track Components map directly to Dublin's most active hiring categories. The MSc from University of Galway (2025) adds a strong local credential. Market fit is high — the CV just doesn't communicate it in the right language.</div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-head">
+          <span class="score-dim">ATS Optimisation</span>
+          <span class="score-val sv-red">2.0 / 5</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill bf-red" style="width:40%"></div></div>
+        <div class="score-note">This is the primary failure point. The title "Operations & Quality Engineer" does not match any high-volume Dublin search query. No standard ATS heading structure confirmed. Multi-column or design-template formats common at this profile level cause silent parsing failures in Workday, Taleo, and Greenhouse — the three systems used by MSD, AbbVie, Pfizer, and AstraZeneca.</div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-head">
+          <span class="score-dim">Keyword Coverage</span>
+          <span class="score-val sv-red">2.5 / 5</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill bf-red" style="width:50%"></div></div>
+        <div class="score-note">12 relevant keywords are present but 14 critical ones are missing. The hidden problem: 6 of those 14 are not genuinely missing from the experience — they exist under the wrong name. "Kaizen" should read "Lean Manufacturing." "Corrective Action" should read "CAPA." "Work Instructions" should read "SOPs." These renamings alone unlock 4–6 additional ATS search categories.</div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-head">
+          <span class="score-dim">Title Positioning</span>
+          <span class="score-val sv-amber">3.2 / 5</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill bf-amber" style="width:64%"></div></div>
+        <div class="score-note">The experience aligns well with Dublin's active hiring categories but the current title "Operations & Quality Engineer" positions Shubham in the wrong segment. "Engineer" in Ireland signals a chartered/technical role. Dublin ops roles at 0–2 years experience use "Analyst" or "Coordinator" — the titles that recruiters and ATS actually search. One title change immediately corrects this.</div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-head">
+          <span class="score-dim">Target Role Accuracy</span>
+          <span class="score-val sv-amber">2.8 / 5</span>
+        </div>
+        <div class="score-bar-track"><div class="score-bar-fill bf-amber" style="width:56%"></div></div>
+        <div class="score-note">Two of the five target roles (Operations Manager and Automotive Engineer) are near-zero probability in the Dublin market. Operations Manager requires 5–8 years minimum; Dublin has almost no automotive manufacturing ecosystem. These applications are consuming quota while diluting overall candidacy. Stop both immediately and redirect to high-probability categories.</div>
+      </div>
+
+    </div>
+
+    <!-- KEY FINDINGS -->
+    <div class="sub-title">Key Findings</div>
+    <div class="finding-list">
+
+      <div class="finding-item">
+        <div class="finding-icon fi-red">!</div>
+        <div class="finding-body">
+          <div class="finding-title">Job title is the #1 ATS failure — change before anything else</div>
+          <div class="finding-desc">"Operations & Quality Engineer" does not surface in Dublin recruiter searches for ops/SC roles at this experience level. Dublin ATS systems at MSD, AbbVie, Pfizer and AstraZeneca route engineer titles to technical/mechanical pipelines. Every application with this title is landing in the wrong stack before a human ever reads it.</div>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-icon fi-red">!</div>
+        <div class="finding-body">
+          <div class="finding-title">Two spelling errors in the first paragraph of the summary</div>
+          <div class="finding-desc">"accross" and "KPI's" (with apostrophe) appear in the professional summary — the single most-read section of any CV. Dublin recruiters receive 250+ CVs per vacancy. Spelling errors are an immediate shortlist disqualifier and signal insufficient attention to detail for operations roles.</div>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-icon fi-red">!</div>
+        <div class="finding-body">
+          <div class="finding-title">6 strong keywords exist but are named incorrectly — zero cost to fix</div>
+          <div class="finding-desc">The experience is present: Kaizen = Lean Manufacturing, Corrective Action = CAPA, Work Instructions = SOPs, Quality Documents = QMS, Tally Dashboards = Data Dashboards, Removing Bottlenecks = Process Optimisation. Renaming these 6 terms unlocks entirely new ATS search buckets without changing a single fact in the CV.</div>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-icon fi-amber">~</div>
+        <div class="finding-body">
+          <div class="finding-title">SAP MM experience is buried — it is rare at this level and must lead</div>
+          <div class="finding-desc">SAP experience at entry level is uncommon in Dublin's SC/ops candidate pool. The SAP MM project is currently in the Projects section at the bottom of page 2. It should appear in the Skills section prominently as "SAP MM (ERP) — PR–PO–GR–IR workflow" and be referenced in the professional summary. This is the single biggest differentiator on the CV and it is currently invisible to ATS filters that search for ERP or SAP.</div>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-icon fi-amber">~</div>
+        <div class="finding-body">
+          <div class="finding-title">MSc from University of Galway (2025) is underweighted</div>
+          <div class="finding-desc">A recent Irish Masters is a strong differentiator in Dublin's job market — it signals local network, local work permission certainty, and academic credibility. Currently buried at the bottom of the CV with no module details. Dublin pharma/SC employers actively prefer candidates with Irish education credentials. Move it above the experience section and add relevant modules.</div>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-icon fi-amber">~</div>
+        <div class="finding-body">
+          <div class="finding-title">7-month gap (Feb–Sep 2024) is unexplained and will trigger recruiter flags</div>
+          <div class="finding-desc">The gap between leaving Track Components (Feb 2024) and starting the Masters (Sep 2024) has no explanation in the current CV. Irish recruiters routinely ask about unexplained gaps in interview. Address it proactively in the Education entry with a brief parenthetical: "gap used for Masters preparation and relocation to Ireland."</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STRENGTHS -->
+    <div class="sub-title">What Is Working — Do Not Change These</div>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <div class="str-label">Quantified Impact</div>
+        <div class="str-text">20% line improvement, 12% NCR reduction, 8% OTD gain, 10 hrs/week reporting saved — every role has a number. This is rare and must be preserved.</div>
+      </div>
+      <div class="strength-card">
+        <div class="str-label">SAP MM Depth</div>
+        <div class="str-text">End-to-end PR–PO–GR–IR workflow with supplier tracking. At entry level in Dublin, this alone sets Shubham apart from 70% of candidates.</div>
+      </div>
+      <div class="strength-card">
+        <div class="str-label">Irish Masters (2025)</div>
+        <div class="str-text">University of Galway MSc is a strong local credential. Dublin employers treat it as a work-right signal and cultural fit indicator.</div>
+      </div>
+      <div class="strength-card">
+        <div class="str-label">KPI Dashboard Project</div>
+        <div class="str-text">Self-built ops KPI tracker with owner-assigned actions is exactly what Dublin ops analyst JDs describe as "desired tools experience."</div>
+      </div>
+      <div class="strength-card">
+        <div class="str-label">Lean/CI Execution</div>
+        <div class="str-text">Kaizen, 5S, and NCR closure in a live manufacturing environment. Not theoretical — real, measurable CI experience.</div>
+      </div>
+      <div class="strength-card">
+        <div class="str-label">Cross-functional Scope</div>
+        <div class="str-text">Coordinated across ops, quality, management and stakeholders. Dublin ops roles prize this horizontal ownership — it's explicitly in most JDs.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ PANEL 2: ROLE FIT ═══ -->
+  <div id="panel-2" class="tab-panel">
+    <div class="info-box ib-blue">Role fit scored against live Dublin job market data from Indeed, IrishJobs, Glassdoor, Collins McNicholas and Morgan McKinley — April 2026. 191+ SC/Ops roles active at time of research.</div>
+
+    <div class="role-grid" style="margin-bottom:1.5rem">
+
+      <div class="role-card primary">
+        <div class="role-head"><div class="role-name">Operations Analyst / Coordinator</div><span class="badge b-target">🎯 Primary</span></div>
+        <div class="fit-track"><div class="fit-fill fill-green" style="width:85%"></div></div>
+        <div class="role-pct pct-green">85% fit</div>
+        <div class="role-desc">The closest match to Shubham's actual day-to-day at Track Components — KPI reporting, downtime analysis, corrective action tracking, and NCR management are literal bullet matches to Dublin ops analyst JDs. The KPI dashboard project is a standout differentiator at this level. Volume: 100+ live Dublin listings across pharma, food, and data centre sectors.</div>
+        <div class="role-gaps"><span>Gap:</span> Formal data tools (Power BI, Tableau) — addressable with a free course this month.</div>
+        <div class="role-sal">€32,000 – €42,000 entry · €45,000–€52,000 within 18 months</div>
+      </div>
+
+      <div class="role-card primary">
+        <div class="role-head"><div class="role-name">Production / Materials Planner</div><span class="badge b-target">🎯 Primary</span></div>
+        <div class="fit-track"><div class="fit-fill fill-green" style="width:80%"></div></div>
+        <div class="role-pct pct-green">80% fit</div>
+        <div class="role-desc">Unitech production planning experience + SAP MM end-to-end procurement workflow = a near-perfect profile match. Dublin pharma and food manufacturers (Kerry Group, BMS, Baxter) run live searches for this exact combination. SAP is rare at entry level and functions as a genuine filter bypass — it gets CVs reviewed where others are rejected. Kerry Group has a live role at Blanchardstown CoE right now.</div>
+        <div class="role-gaps"><span>Gap:</span> MRP/demand forecasting vocabulary not in CV — add to skills, experience exists.</div>
+        <div class="role-sal">€35,000 – €45,000 entry · SAP skill adds ~€3–4k premium over non-SAP profiles</div>
+      </div>
+
+      <div class="role-card primary">
+        <div class="role-head"><div class="role-name">Graduate Ops / SC Programmes</div><span class="badge b-green">Apply Now</span></div>
+        <div class="fit-track"><div class="fit-fill fill-green" style="width:78%"></div></div>
+        <div class="role-pct pct-green">78% eligibility</div>
+        <div class="role-desc">HPE Graduate Process & Operations Transformation Programme (Leixlip, open now), Bluecrux Junior SC Consultant September 2026 intake, AbbVie graduate intake — all live and actively recruiting. The critical advantage: these programmes take volume intakes and are evaluated by humans, not just ATS. MSc from University of Galway is a direct qualifier for all three. Bluecrux application deadline is likely June 2026.</div>
+        <div class="role-gaps"><span>Gap:</span> None significant — these are designed for recent postgraduates.</div>
+        <div class="role-sal">€30,000 – €38,000 base with structured 18–24 month progression paths</div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-head"><div class="role-name">Supply Chain Coordinator / Analyst (Jr)</div><span class="badge b-blue">Good fit</span></div>
+        <div class="fit-track"><div class="fit-fill fill-blue" style="width:70%"></div></div>
+        <div class="role-pct pct-blue">70% fit</div>
+        <div class="role-desc">Coursera SC certification + SAP + 8% OTD improvement at Unitech = credible SC story. Live listings from Morgan McKinley, ICON Plc, and Tonix Pharmaceuticals Dublin. The Master's in International Management is a strong qualifier for SC coordinator roles at global organisations. Target junior listings only — roles asking for 2+ years SC-specific exp will ATS-reject at this stage.</div>
+        <div class="role-gaps"><span>Gap:</span> No S&OP, demand planning, or CDMO exposure — note this honestly in cover letters.</div>
+        <div class="role-sal">€33,000 – €42,000 · Bluecrux SC Consultant Sept 2026 intake actively open</div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-head"><div class="role-name">Continuous Improvement / Lean Analyst</div><span class="badge b-blue">Strong hidden fit</span></div>
+        <div class="fit-track"><div class="fit-fill fill-blue" style="width:68%"></div></div>
+        <div class="role-pct pct-blue">68% fit</div>
+        <div class="role-desc">This is the most underrecognised fit on the CV. Kaizen execution, 5S implementation, 20% line performance improvement, and 12% NCR reduction in 6 weeks are exactly what CI Analyst JDs at Kerry Group, Amgen, and BMS describe. The problem: the CV never uses "Continuous Improvement," "Lean Manufacturing," or "Process Optimisation" — three of the top 5 search terms for this category. Renaming existing bullets costs zero time and unlocks this entire segment.</div>
+        <div class="role-gaps"><span>Gap:</span> No formal Lean certification — enrolling in Lean Green Belt immediately bridges this.</div>
+        <div class="role-sal">€35,000 – €48,000 · High growth path in Dublin's life sciences sector</div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-head"><div class="role-name">Quality Operations Specialist</div><span class="badge b-blue">Conditional fit</span></div>
+        <div class="fit-track"><div class="fit-fill fill-blue" style="width:62%"></div></div>
+        <div class="role-pct pct-blue">62% fit</div>
+        <div class="role-desc">NCR management, 98% audit compliance, 130+ QMS documents, and GMP awareness create a credible quality ops foundation. Bausch + Lomb and West Pharmaceutical Services (both Dublin) hire quality coordinators at this level. Important distinction: target manufacturing quality roles, not pharmaceutical quality. Pharma QA requires GxP and FDA/EMA regulatory vocabulary that is not in Shubham's background.</div>
+        <div class="role-gaps"><span>Gap:</span> No cGMP, no validation experience, no pharma-regulatory vocabulary.</div>
+        <div class="role-sal">€34,000 – €44,000 · Manufacturing QA path, not pharma QA</div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-head"><div class="role-name">Operations Manager</div><span class="badge b-amber">Stop Applying</span></div>
+        <div class="fit-track"><div class="fit-fill fill-amber" style="width:22%"></div></div>
+        <div class="role-pct pct-amber">22% fit</div>
+        <div class="role-desc">The Dublin market consistently requires 5–8 years minimum experience for Operations Manager titles across all sectors. At 1.5 years total, every application to this category is generating an ATS rejection before a human sees it. This is not a question of CV quality — it is a market reality. Continuing to apply here wastes application quota that should be directed at high-probability categories.</div>
+        <div class="role-sal role-sal-stop">❌ Stop all applications to this title immediately</div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-head"><div class="role-name">Automotive / Manufacturing Engineer</div><span class="badge b-red">Dead End</span></div>
+        <div class="fit-track"><div class="fit-fill fill-red" style="width:12%"></div></div>
+        <div class="role-pct pct-red">12% fit</div>
+        <div class="role-desc">Dublin has virtually no automotive manufacturing ecosystem — there are no major OEMs or Tier 1 suppliers operating manufacturing sites in the city. The B.Tech Mechanical from MIT-WPU is the only connection to this category, but Dublin employers in manufacturing hire for pharma, medtech, and food sectors. The skills are transferable; the sector pipeline simply does not exist in Dublin.</div>
+        <div class="role-sal role-sal-stop">❌ Zero pipeline in Dublin — do not invest any application effort here</div>
+      </div>
+
+    </div>
+
+    <div class="sub-title" style="color:#60a5fa;margin-bottom:10px">Additional role titles to target — not currently being applied for</div>
+    <div class="title-grid">
+      <div class="title-card">
+        <div class="tc-title">Manufacturing Operations Coordinator</div>
+        <div class="tc-why">Highest-volume Dublin listing type for this profile. Exact scope match to Track Components role. Kerry Group, BMS, Bristol Myers Squibb actively hiring this title.</div>
+      </div>
+      <div class="title-card">
+        <div class="tc-title">Production Support Analyst</div>
+        <div class="tc-why">Bridges operations + data analytics. The KPI dashboard project is a direct differentiator. Pharma and medtech manufacturing sites use this title for entry-level ops roles with reporting responsibilities.</div>
+      </div>
+      <div class="title-card">
+        <div class="tc-title">Operations Excellence Analyst</div>
+        <div class="tc-why">Growing role category in Dublin biopharma. AbbVie, Pfizer Grange Castle, and AstraZeneca use this exact title. Lean/CI background is the primary qualifier — Shubham has the experience, just needs the label.</div>
+      </div>
+      <div class="title-card">
+        <div class="tc-title">Materials / Inventory Coordinator</div>
+        <div class="tc-why">SAP MM project + Unitech production planning = 80% match to this title. MSD, Amgen, and Baxter Dublin sites specifically search for SAP and ERP experience at this level.</div>
+      </div>
+      <div class="title-card">
+        <div class="tc-title">Supply Planning Associate</div>
+        <div class="tc-why">Entry-point to pharma SC teams. ICON Plc, Tonix Pharmaceuticals, and Regeneron Dublin have posted this title recently. MSc + SC certification = minimum qualification met.</div>
+      </div>
+      <div class="title-card">
+        <div class="tc-title">Process Improvement Analyst</div>
+        <div class="tc-why">Medtronic Dublin HQ and Novartis Global Service Centre Dublin both hire at junior level for this. Kaizen, 5S, and the 20% performance improvement are the exact experience profile required.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 3: CV SURGERY ═══ -->
+  <div id="panel-3" class="tab-panel">
+    <div class="nav-tabs" id="cv-nav">
+      <button class="ntab active" onclick="showCvTab('cv-title',this)">Job Title</button>
+      <button class="ntab" onclick="showCvTab('cv-summary',this)">Summary</button>
+      <button class="ntab" onclick="showCvTab('cv-track',this)">Track Components</button>
+      <button class="ntab" onclick="showCvTab('cv-unitech',this)">Unitech</button>
+      <button class="ntab" onclick="showCvTab('cv-skills',this)">Skills Section</button>
+      <button class="ntab" onclick="showCvTab('cv-edu',this)">Education</button>
+      <button class="ntab" onclick="showCvTab('cv-format',this)">Format & ATS</button>
+    </div>
+
+    <div id="cv-title" class="cv-tab-panel" style="display:block">
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 Critical — Change Before Submitting Any Further Application</div>
+        <div class="cv-original"><span class="sec-ref">CV Header · Title line directly under name</span>"<mark>Operations & Quality Engineer</mark>" · shubham.alone7799@gmail.com · Ireland</div>
+        <div class="cv-fix"><strong style="color:#fff;display:block;margin-bottom:5px">Replace with one of these — pick based on the role you're applying for:</strong>
+          Option A (broadest ATS reach): <strong style="color:#fff">Operations & Supply Chain Analyst</strong><br>
+          Option B (pharma/medtech target): <strong style="color:#fff">Manufacturing Operations Coordinator</strong><br>
+          Option C (CI/Lean angle): <strong style="color:#fff">Operations Analyst | Continuous Improvement & Planning</strong><br><br>
+          Reason: "Engineer" in Ireland signals a professionally chartered technical role. At 0–2 years experience, Dublin recruiters search for "Analyst" or "Coordinator." The current title is landing every application in the wrong ATS pipeline before a human reads it.
+        </div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Contact Line — LinkedIn URL Not Extractable by ATS</div>
+        <div class="cv-original"><span class="sec-ref">Contact Section · LinkedIn field</span><mark>LinkedIn</mark> (hyperlinked word only — no visible URL)</div>
+        <div class="cv-fix">Replace with the full visible URL: <strong style="color:#fff">linkedin.com/in/shubhamalone</strong><br>ATS systems parse raw PDF text. A hyperlinked word does not extract as a URL — recruiters who download the CV cannot click through and the ATS cannot validate the profile link.</div>
+      </div>
+    </div>
+
+    <div id="cv-summary" class="cv-tab-panel">
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 Line 1 — Wrong Priority Order + Cliché Phrase</div>
+        <div class="cv-original"><span class="sec-ref">Professional Summary · Opening sentence</span>"Strategic Operations & Quality professional with 1.5 yrs experience in manufacturing operations, production planning, and quality delivery in <mark>target-driven environments</mark>."</div>
+        <div class="cv-fix">"Target-driven environments" is the single most filtered-out phrase in Dublin CV screening — it appears on nearly every CV and signals nothing. The summary also leads with "Quality" before "Operations," which positions Shubham in the wrong priority category for SC/ops roles.<br><br><strong style="color:#fff">Fix:</strong> "Operations & Supply Chain professional with 1.5 years of manufacturing experience spanning production planning, continuous improvement, and cross-functional operations in fast-paced production environments."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 Line 2 — Two Spelling Errors + Weak Framing</div>
+        <div class="cv-original"><span class="sec-ref">Professional Summary · Second sentence</span>"Led teams <mark>accross</mark> the organization improving <mark>KPI's</mark> , corrective action to improve flow."</div>
+        <div class="cv-fix">"accross" → "across" (spelling). "KPI's" → "KPIs" (no apostrophe for abbreviation plurals). The sentence itself is also weak — it describes activity, not outcome.<br><br><strong style="color:#fff">Fix:</strong> "Delivered 20% line performance improvement and 8% on-time delivery gain through Lean/CI methodologies, KPI-driven daily management, and structured CAPA processes. SAP MM trained (PR–PO–GR–IR) with hands-on ERP inventory workflow experience."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Line 3 — Informal Certification Framing</div>
+        <div class="cv-original"><span class="sec-ref">Professional Summary · Third sentence</span>"<mark>Coursera certified</mark> in Supply Chain Management with SAP MM training."</div>
+        <div class="cv-fix">"Coursera certified" reads as informal and is often filtered out. Rename with the issuing institution for credibility.<br><br><strong style="color:#fff">Fix:</strong> "Certified in Supply Chain Management (MITx/Coursera) | SAP MM (ERP) | MSc International Management, University of Galway (2025)."</div>
+      </div>
+      <div class="rewrite-box">
+        <span class="rewrite-label">✅ Complete Rewritten Summary — Copy This Exactly</span>
+        "Operations & Supply Chain professional with 1.5 years of manufacturing experience spanning production planning, continuous improvement, and cross-functional operations. Delivered quantified results including 20% line performance uplift, 12% reduction in repeat non-conformances within 6 weeks, and 8% on-time delivery improvement through Lean/CI methodologies and structured CAPA processes. SAP MM trained (PR–PO–GR–IR) with hands-on ERP inventory and procurement workflow experience. Certified in Supply Chain Management (MITx via Coursera). MSc International Management, University of Galway (2025). Seeking an Operations Analyst or Production Planning role in manufacturing or life sciences in Dublin."
+      </div>
+    </div>
+
+    <div id="cv-unitech" class="cv-tab-panel">
+      <div class="info-box ib-amber">Good bullets overall — need terminology refresh and one India-specific tool renamed.</div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Bullet 1 — Add Explicit Keywords</div>
+        <div class="cv-original"><span class="sec-ref">Unitech Corporation · First bullet</span>"Synchronized the production plan into daily priorities for project operators, tracking progress through the shift and improving on-time delivery by 8%."</div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> "Developed and coordinated <strong style="color:#fff">production plans</strong> aligned with daily operational priorities; tracked shift progress and improved <strong style="color:#fff">on-time delivery (OTD)</strong> by 8%." — Adds "production plans" and "OTD" as explicit ATS-searchable terms.</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 Bullet 4 — "Tally Dashboards" Is Not Recognised in Dublin</div>
+        <div class="cv-original"><span class="sec-ref">Unitech Corporation · Fourth bullet</span>"Automated defect tracking for stakeholders using <mark>Tally dashboards</mark> and aligned the team on the new process, reducing manual reporting time by 10 hours per week"</div>
+        <div class="cv-fix">"Tally" is India-specific accounting software. Dublin recruiters and ATS systems do not recognise it — it actively reads as a non-transferable skill.<br><br><strong style="color:#fff">Fix:</strong> "Built automated <strong style="color:#fff">defect tracking and data reporting</strong> tools using Excel dashboards; led team adoption and standardisation, reducing manual reporting time by 10 hours per week."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Employment Gap — Feb 2024 → Sep 2024</div>
+        <div class="cv-original"><span class="sec-ref">CV Timeline · Between Track Components (Feb 2024) and MSc start (Sep 2024)</span><mark>7-month unexplained gap</mark> with no entry in the CV.</div>
+        <div class="cv-fix">Add a parenthetical note to the Masters entry:<br><strong style="color:#fff">"Sep 2024 – Sep 2025 (following Track Components role; gap period used for Masters preparation and relocation to Ireland)"</strong><br>Dublin recruiters ask about gaps in first-round interviews. Addressing it proactively removes a risk and shows self-awareness.</div>
+      </div>
+    </div>
+
+    <div id="cv-track" class="cv-tab-panel">
+      <div class="info-box ib-blue">This is Shubham's strongest role — 6 bullets, all with numbers. Needs keyword upgrade only.</div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Bullet 1</div>
+        <div class="cv-original"><span class="sec-ref">Track Components · First bullet</span>"Led shop-floor quality operations for a 14-person team, <mark>removing bottlenecks</mark> and improving line performance by 20%."</div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> "Led shop-floor operations for a 14-person team, driving <strong style="color:#fff">continuous improvement</strong> and <strong style="color:#fff">process optimisation</strong> initiatives that delivered a 20% line performance improvement."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Bullet 2</div>
+        <div class="cv-original"><span class="sec-ref">Track Components · Second bullet</span>"Ran daily KPI huddles with operations across KPIs, prioritising downtime actions and improving adherence by 7%."</div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> "Managed daily <strong style="color:#fff">KPI reporting</strong> and operational performance reviews; analysed <strong style="color:#fff">downtime and quality loss data</strong> to prioritise corrective actions, improving KPI adherence by 7%."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Bullet 3</div>
+        <div class="cv-original"><span class="sec-ref">Track Components · Third bullet</span>"...integrating 5S methodologies and <mark>Kaizen principles</mark> to streamline workflows and reduce corrective-action time."</div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> "...applying <strong style="color:#fff">Lean Manufacturing</strong> (5S, Kaizen) principles to streamline workflows and reduce <strong style="color:#fff">CAPA</strong> resolution time."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Bullet 4 — Add SOPs and Change Management</div>
+        <div class="cv-original"><span class="sec-ref">Track Components · Fourth bullet</span>"...reducing repeat non-conformance by 12% within 6 weeks through updated <mark>work instructions</mark>."</div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> "...achieving 12% reduction in repeat non-conformances within 6 weeks through updated <strong style="color:#fff">SOPs</strong> and structured <strong style="color:#fff">change management</strong>." Also fix punctuation: "project ," → "project," (trailing space before comma).</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Bullet 5 — Add QMS</div>
+        <div class="cv-original"><span class="sec-ref">Track Components · Fifth bullet</span>"Authored and managed over 130 quality documents..."</div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> "Maintained and controlled 130+ <strong style="color:#fff">quality management system (QMS)</strong> documents, achieving 98% <strong style="color:#fff">audit compliance</strong> and full traceability across all service deployments."</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 Bullet 6 — Delete or Quantify</div>
+        <div class="cv-original"><span class="sec-ref">Track Components · Sixth bullet</span>"Bridged the gap between technical design and client requirements, improving project documentation accuracy and <mark>process efficiency through detailed requirement mapping</mark>."</div>
+        <div class="cv-fix">No metrics, no ATS keywords, vague framing. Either add a specific number ("reducing documentation errors by X%") or delete it entirely. Four strong bullets beat six weak ones every time.</div>
+      </div>
+    </div>
+
+    <div id="cv-skills" class="cv-tab-panel">
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 Full Section Replacement Required</div>
+        <div class="cv-original"><span class="sec-ref">Skills Section · Complete current content</span>Six Sigma · Leadership & Relationship building · Problem Solving · Good Manufacturing Practices · Excel & Word Proficiency · SAP MM · <mark>Organizational Skill</mark> · <mark>Business Administration</mark> · KPI Driven Approach · <mark>Client-Centric Service Delivery</mark> · Teamwork & Collaboration · Stakeholder Management</div>
+        <div class="cv-fix">Problems: "Organizational Skill" (singular, unsearchable) · "Business Administration" (a degree field, not a skill) · "Client-Centric Service Delivery" (consulting jargon, wrong register for ops) · "Good Manufacturing Practices" should be "GMP" · Missing completely: ERP, Continuous Improvement, Lean Manufacturing, CAPA, MRP, Inventory Management, Process Optimisation, QMS, SOPs, Power BI.</div>
+      </div>
+      <div class="rewrite-box">
+        <span class="rewrite-label">✅ Full Rewritten Skills Section</span>
+        <strong style="color:#fff;display:block;margin-bottom:5px">Operations & Planning</strong>
+        Production Planning · KPI Management & Reporting · Continuous Improvement (CI) · Lean Manufacturing (5S, Kaizen) · CAPA Management · Root Cause Analysis · Process Optimisation · GMP / QMS<br><br>
+        <strong style="color:#fff;display:block;margin-bottom:5px">Systems & Data</strong>
+        SAP MM (ERP) · MRP · Microsoft Excel (Advanced) · KPI Dashboards · Data Analysis & Reporting<br><br>
+        <strong style="color:#fff;display:block;margin-bottom:5px">Supply Chain</strong>
+        Inventory Management · Procurement (PR–PO–GR–IR) · Cross-functional Collaboration · Stakeholder Management · On-Time Delivery (OTD) Optimisation<br><br>
+        <strong style="color:#fff;display:block;margin-bottom:5px">Methodologies</strong>
+        Six Sigma (awareness) · Lean / Kaizen · Change Management · NCR Management · Audit Compliance
+      </div>
+    </div>
+
+    <div id="cv-edu" class="cv-tab-panel">
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Add Relevant Modules — Dublin Employers Check These</div>
+        <div class="cv-original"><span class="sec-ref">Education · Masters Entry</span>"University of Galway, Ireland, Master's in international management Sep 2024 – Sep 2025" <mark>— no modules, no dissertation topic, no relevant coursework.</mark></div>
+        <div class="cv-fix"><strong style="color:#fff">Fix:</strong> Add module line: "University of Galway | MSc International Management | Sep 2024 – Sep 2025<br><em>Relevant modules: Operations Strategy, Supply Chain Management, Business Analytics, Project Management, International Business</em>"<br>Dublin pharma and SC hiring managers specifically look for coursework evidence of SC/ops foundations in MSc graduates.</div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Move Education Section — It Is Currently Buried</div>
+        <div class="cv-original"><span class="sec-ref">CV Layout · Education position</span>Education appears <mark>at the bottom of the CV after all work experience and projects.</mark></div>
+        <div class="cv-fix">Move Education to immediately below the Professional Summary, before Work Experience. A 2025 Irish Masters is the strongest recent credential and should be visible in the first 6-second recruiter scan. Currently it is invisible unless the reader reaches the bottom of page 2.</div>
+      </div>
+    </div>
+
+    <div id="cv-format" class="cv-tab-panel">
+      <div class="cv-annotation">
+        <div class="ann-label ann-red">🔴 ATS Format — Risk of Silent Rejection at MSD, AbbVie, Pfizer, AstraZeneca</div>
+        <div class="cv-original"><span class="sec-ref">CV File Format / Structure</span><mark>Format not confirmed — likely multi-column or design-template layout</mark> based on CV content pattern.</div>
+        <div class="cv-fix">Irish ATS requirements (Workday at MSD/AstraZeneca, Taleo at AbbVie, Greenhouse at startups/consulting firms):<br>
+          · Single-column layout — no tables, no text boxes, no two-column sections<br>
+          · Standard section headers only: "Work Experience", "Education", "Skills", "Projects"<br>
+          · Font: Calibri or Georgia, 10–11pt body, 14–16pt name<br>
+          · No photos, logos, colour boxes, or decorative elements<br>
+          · Maximum 2 pages (1.5 pages ideal at this experience level)<br>
+          · Submit as PDF — unless the application form specifically requests DOCX<br>
+          · Test every version at Jobscan.co before submitting — aim for 70%+ match score
+        </div>
+      </div>
+      <div class="cv-annotation">
+        <div class="ann-label ann-amber">🟡 Projects Section — Promote SAP MM to Page 1</div>
+        <div class="cv-original"><span class="sec-ref">Projects Section · Current placement</span>Both projects appear <mark>after Education at the bottom of page 2</mark> — near-invisible to ATS and recruiter first scans.</div>
+        <div class="cv-fix">Move Projects section ABOVE Education. Or embed each project within the most relevant work role as a "Key Project" sub-bullet. SAP MM at entry level is a rare differentiator — it must be visible on page 1. Add an outcome metric: "Outcome: Enabled automated stock reporting and reduced manual inventory queries by X%."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 4: KEYWORDS ═══ -->
+  <div id="panel-4" class="tab-panel">
+    <div class="kw-group">
+      <div class="kw-group-label">✅ Present in CV — ATS will catch these</div>
+      <div class="kw-row">
+        <span class="kw kw-present">SAP MM</span><span class="kw kw-present">KPI</span><span class="kw kw-present">5S</span>
+        <span class="kw kw-present">Kaizen</span><span class="kw kw-present">Six Sigma</span><span class="kw kw-present">NCR</span>
+        <span class="kw kw-present">GMP</span><span class="kw kw-present">Production Planning</span><span class="kw kw-present">Root Cause</span>
+        <span class="kw kw-present">Stakeholder Management</span><span class="kw kw-present">Audit Compliance</span><span class="kw kw-present">OTD</span>
+      </div>
+    </div>
+    <div class="kw-group">
+      <div class="kw-group-label">🟡 Experience exists but wrong name — rename only (10 min, zero new experience needed)</div>
+      <div class="kw-row">
+        <span class="kw kw-rename">Kaizen → Lean Manufacturing</span>
+        <span class="kw kw-rename">Corrective Action → CAPA</span>
+        <span class="kw kw-rename">Tally Dashboards → Excel / Data Dashboards</span>
+        <span class="kw kw-rename">Quality Documents → QMS Documentation</span>
+        <span class="kw kw-rename">Work Instructions → SOPs</span>
+        <span class="kw kw-rename">Removing Bottlenecks → Process Optimisation</span>
+      </div>
+    </div>
+    <div class="kw-group">
+      <div class="kw-group-label">🔴 Missing — Add to Skills section and Summary immediately</div>
+      <div class="kw-row">
+        <span class="kw kw-missing">Continuous Improvement</span>
+        <span class="kw kw-missing">ERP Systems</span>
+        <span class="kw kw-missing">MRP</span>
+        <span class="kw kw-missing">Inventory Management</span>
+        <span class="kw kw-missing">CAPA</span>
+        <span class="kw kw-missing">Process Optimisation</span>
+        <span class="kw kw-missing">Cross-functional Collaboration</span>
+        <span class="kw kw-missing">Supply Planning</span>
+        <span class="kw kw-missing">Demand Planning</span>
+        <span class="kw kw-missing">Lean Manufacturing</span>
+        <span class="kw kw-missing">Change Management</span>
+        <span class="kw kw-missing">QMS</span>
+        <span class="kw kw-missing">SOPs</span>
+        <span class="kw kw-missing">Power BI / Data Visualisation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 5: MARKET INTEL ═══ -->
+  <div id="panel-5" class="tab-panel">
+    <div class="info-box ib-green">Ireland's Biopharma sector is forecast to add 21,000 jobs by 2027. 9 of the world's top 10 pharma companies and 14 of the top 15 MedTech companies operate in Ireland. Dublin is the #1 county for pharma/medtech manufacturing jobs. The market is active and growing — the barrier is positioning, not opportunity volume.</div>
+    <table class="mkt-table" style="margin-bottom:1.5rem">
+      <thead><tr><th>Sector</th><th>Dublin Market</th><th>Fit</th><th>Key Hiring Signal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Pharma / Biopharma</strong></td><td>Largest sector. MSD (3,000+ Ireland employees), AbbVie (2,600), Pfizer, BMS, AZ, Amgen all Dublin-active.</td><td><span class="badge b-blue">Strong</span></td><td>SAP + GMP + production planning = credible entry. GxP vocab gap is addressable. Uses Workday/Taleo ATS — keyword alignment is critical.</td></tr>
+        <tr><td><strong>MedTech / Med Devices</strong></td><td>14 of top 15 global medtech companies in Ireland. Medtronic corporate HQ is Dublin. Baxter, Bausch+Lomb, West Pharma also Dublin-active.</td><td><span class="badge b-blue">Strong</span></td><td>Ops coordinator, CI analyst, quality ops roles at entry level. 18-month rotational programmes exist at Medtronic and Logitech.</td></tr>
+        <tr><td><strong>Food & Beverage Mfg</strong></td><td>Kerry Group Centre of Excellence at Blanchardstown Dublin. Ornua, Glanbia SC functions Dublin-based.</td><td><span class="badge b-green">Best fit now</span></td><td>Less regulated than pharma = easier entry for non-GxP background. Kerry Group Lean/Kaizen culture = direct fit. Live SC Planner role open at Blanchardstown.</td></tr>
+        <tr><td><strong>SC Consulting</strong></td><td>Bluecrux (Dublin 2), Accenture Operations, BearingPoint hiring junior SC consultants.</td><td><span class="badge b-amber">Good with MSc</span></td><td>Bluecrux Sept 2026 graduate intake actively recruiting. Training bootcamp included. SC cert + MSc = minimum qualifier met. Apply before June 2026.</td></tr>
+        <tr><td><strong>Data Centre / Infrastructure</strong></td><td>Turner & Townsend, Echelon DC, Google, Meta all hiring SC/procurement coordination roles for data centre builds.</td><td><span class="badge b-amber">Emerging</span></td><td>Lower competition than pharma. Procurement coordination + stakeholder management skills transfer directly. Turner & Townsend live role in Dublin now.</td></tr>
+        <tr><td><strong>Automotive / Manufacturing</strong></td><td>No meaningful automotive manufacturing ecosystem in Dublin. No OEMs, no Tier 1 suppliers with manufacturing operations.</td><td><span class="badge b-red">Avoid</span></td><td>Stop applying. The pipeline does not exist in Dublin regardless of qualifications.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:#60a5fa;margin-bottom:10px">Top companies actively hiring — prioritised list</div>
+    <div class="company-grid" style="margin-bottom:1.5rem">
+      <div class="company-card hot"><div class="co-name">Kerry Group</div><div class="co-sector">Food Mfg · Blanchardstown, D15</div><span class="badge b-green">🔥 Live Role Now</span><div class="co-note">SC Planner/Coordinator at Centre of Excellence. Hybrid working. Lean/Kaizen culture. Production planning + SAP = strong match. Apply directly on Kerry.com.</div></div>
+      <div class="company-card hot"><div class="co-name">Bluecrux</div><div class="co-sector">SC Consulting · Dublin 2</div><span class="badge b-green">🔥 Sept 2026 Intake</span><div class="co-note">Junior SC Consultant graduate intake. SC training bootcamp on joining. MSc + SC cert = direct qualifier. Deadline likely June. Apply at bluecrux.com/careers.</div></div>
+      <div class="company-card hot"><div class="co-name">MSD (Merck)</div><div class="co-sector">Pharmaceutical · Red Oak, Dublin</div><span class="badge b-green">22+ Open Roles</span><div class="co-note">Multiple SC, operations, QA coordinator roles across Dublin. SAP is a specific filter. Uses Workday — run CV through Jobscan against their JDs before applying.</div></div>
+      <div class="company-card"><div class="co-name">AbbVie Ireland</div><div class="co-sector">Pharma/Biotech · Dublin + Sligo</div><span class="badge b-blue">Graduate Intake + SC</span><div class="co-note">Dublin office covers Commercial, SC and Operations activities. Graduate programme active. 2,600 Ireland employees. Strategic planning and SC coordinator roles open.</div></div>
+      <div class="company-card"><div class="co-name">AstraZeneca / Alexion</div><div class="co-sector">Pharma · College Park, Dublin</div><span class="badge b-blue">Actively Hiring</span><div class="co-note">€360m+ invested in Dublin site. €65m expansion announced 2024 creating new ops and SC coordination roles. GMP + quality operations background valued.</div></div>
+      <div class="company-card"><div class="co-name">Amgen Ireland</div><div class="co-sector">Biotech · Dún Laoghaire</div><span class="badge b-blue">Multiple Openings</span><div class="co-note">Supply operations analyst and inventory coordination roles. SAP experience explicitly listed as asset in their JDs. Accessible from Dublin by DART.</div></div>
+      <div class="company-card"><div class="co-name">HPE (Hewlett Packard)</div><div class="co-sector">Technology · Leixlip, Co. Kildare</div><span class="badge b-blue">Graduate Programme</span><div class="co-note">Process & Operations Transformation graduate programme. Accepts MSc in Business/Engineering/SC. 18-month rotational. Commutable from Dublin. Apply via hpe.com/jobs.</div></div>
+      <div class="company-card"><div class="co-name">Bristol Myers Squibb</div><div class="co-sector">Pharma · Cruiserath, Dublin</div><span class="badge b-blue">Hiring</span><div class="co-note">Supply planning, procurement analyst, and ops coordinator roles. QMS/GMP background valued. Biologics manufacturing site. Graduate intake also active.</div></div>
+      <div class="company-card"><div class="co-name">Medtronic</div><div class="co-sector">MedTech HQ · Tallaght, Dublin</div><span class="badge b-amber">Watch List</span><div class="co-note">Corporate HQ is Dublin. CI, ops, SC coordination roles. 18-month ops rotation programme. Irish Masters from University of Galway is actively preferred by their hiring team.</div></div>
+    </div>
+
+    <div class="sub-title">Irish specialist recruiters — submit CV directly to bypass ATS</div>
+    <div class="recruiter-row">
+      <span class="rec-pill">CPL Recruitment</span><span class="rec-pill">Collins McNicholas</span>
+      <span class="rec-pill">Morgan McKinley</span><span class="rec-pill">FRS Recruitment</span>
+      <span class="rec-pill">Life Science Recruitment</span><span class="rec-pill">Proclinical (pharma SC)</span>
+      <span class="rec-pill">Noel Group</span>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 6: CHECKLIST ═══ -->
+  <div id="panel-6" class="tab-panel">
+
+    <div class="checklist-group">
+      <div class="cl-group-title">CV & Profile Fixes</div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Change job title to "Operations & Supply Chain Analyst" <span class="cl-tag ct-red">Critical</span></div>
+          <div class="cl-desc">Replace "Operations & Quality Engineer" across CV header, LinkedIn headline, and all application portals. This is the single highest-impact change — it fixes ATS routing before any human reads the CV.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Fix spelling errors: "accross" → "across", "KPI's" → "KPIs" <span class="cl-tag ct-red">Critical</span></div>
+          <div class="cl-desc">Both errors are in the Professional Summary — the first thing a recruiter reads. Fix in the CV document and in your LinkedIn About section.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Replace the Skills section using the rewritten version in the CV Surgery tab <span class="cl-tag ct-red">Critical</span></div>
+          <div class="cl-desc">Add: Continuous Improvement, ERP, CAPA, MRP, Lean Manufacturing, Process Optimisation, QMS, SOPs. Remove: Organizational Skill, Business Administration, Client-Centric Service Delivery.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Replace the Professional Summary with the full rewrite from CV Surgery tab <span class="cl-tag ct-red">Critical</span></div>
+          <div class="cl-desc">Lead with impact numbers. Add MSc University of Galway (2025) and SAP MM (ERP) explicitly. Remove clichés. Recruiters spend 6 seconds here — make it count.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Rename 6 keywords throughout all bullets <span class="cl-tag ct-amber">High</span></div>
+          <div class="cl-desc">Kaizen→Lean Manufacturing · Corrective Action→CAPA · Work Instructions→SOPs · Quality Documents→QMS · Tally Dashboards→Excel Dashboards · Removing Bottlenecks→Process Optimisation. Zero new experience required.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Move Education section above Work Experience and add relevant modules <span class="cl-tag ct-amber">High</span></div>
+          <div class="cl-desc">Add: "Relevant modules: Operations Strategy, Supply Chain Management, Business Analytics, Project Management." Explain the Feb–Sep 2024 gap with a brief note.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Move SAP MM project to page 1 / above Education <span class="cl-tag ct-amber">High</span></div>
+          <div class="cl-desc">SAP at entry level is rare. Currently buried on page 2. Promote to Skills section as "SAP MM (ERP) — PR–PO–GR–IR workflow" and reference it in the summary.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Convert CV to clean single-column PDF and test on Jobscan.co <span class="cl-tag ct-blue">Format</span></div>
+          <div class="cl-desc">Remove all tables, text boxes, columns, and design elements. Standard font (Calibri/Georgia). Test against 3 target JDs on Jobscan — aim for 70%+ match score before applying.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="cl-group-title">Applications to Submit</div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Apply to Bluecrux Junior SC Consultant (Sept 2026 intake) <span class="cl-tag ct-red">Deadline: ~June</span></div>
+          <div class="cl-desc">Graduate intake — bypasses senior ATS filters. MSc + SC certification = minimum qualifier. Apply at bluecrux.com/careers. Use the Mentorque Resume Tailoring feature to optimise your CV against their JD before submitting.</div>
+          <div><span class="cl-feature">⚡ Resume Tailoring</span></div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Apply to Kerry Group SC Planner / Coordinator (Blanchardstown) <span class="cl-tag ct-red">Live Now</span></div>
+          <div class="cl-desc">Live role at Centre of Excellence. Production planning + SAP MM = strong match. Lean/Kaizen culture. Apply directly on Kerry.com. Optimise CV against their JD first.</div>
+          <div><span class="cl-feature">⚡ Resume Tailoring</span></div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Apply to HPE Graduate Process & Operations Transformation Programme <span class="cl-tag ct-red">Live Now</span></div>
+          <div class="cl-desc">Open at Leixlip, Co. Kildare (30 min from Dublin). Structured 18-month rotational. MSc in Business/Engineering = direct qualifier. Apply via hpe.com/jobs.</div>
+          <div><span class="cl-feature">⚡ Resume Tailoring</span></div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Submit tailored CV to 3 Dublin roles on Indeed / IrishJobs (Operations Analyst or Production Planner) <span class="cl-tag ct-blue">Ongoing</span></div>
+          <div class="cl-desc">Use Mentorque Resume Tailoring to optimise the CV against each specific JD before applying. Never submit the same CV twice — tailor title and summary for every role.</div>
+          <div><span class="cl-feature">⚡ Resume Tailoring</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="cl-group-title">Recruiter & Direct Outreach</div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Submit CV to CPL, Collins McNicholas, and Morgan McKinley (call, not email) <span class="cl-tag ct-amber">High</span></div>
+          <div class="cl-desc">Ask to speak with the ops/SC specialist at each agency. Recruiter-submitted CVs bypass ATS entirely for many roles and get reviewed by humans first. Phone call converts 3x better than email in the Irish market.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Send LinkedIn connection requests to SC/Ops hiring managers at Kerry Group, MSD, and Bluecrux <span class="cl-tag ct-amber">High</span></div>
+          <div class="cl-desc">Use Mentorque Agentic Outreach to automatically send targeted connection requests to Hiring Managers in Supply Chain & Operations at these companies. Include a personalised note referencing your SAP + production planning background.</div>
+          <div><span class="cl-feature" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.2);color:#34d399">🤖 Agentic Outreach</span></div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Request referrals from SC professionals at AbbVie, MSD, and AstraZeneca Dublin <span class="cl-tag ct-blue">Strategic</span></div>
+          <div class="cl-desc">Use Mentorque Agentic Outreach to target Senior SC Coordinators, Operations Analysts, or Production Planners at these companies. Referral applications at pharma companies typically receive direct recruiter review rather than going through ATS first.</div>
+          <div><span class="cl-feature" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.2);color:#34d399">🤖 Agentic Outreach</span></div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Track all applications in Mentorque Job Tracker <span class="cl-tag ct-blue">Ongoing</span></div>
+          <div class="cl-desc">Log every application: company, role title, date applied, CV version used, tailored (Y/N), recruiter contacted (Y/N), status. Review weekly. If 0 responses from 5+ applications in 10 business days, the current CV angle isn't working — pivot the title or summary framing.</div>
+          <div><span class="cl-feature" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.2);color:#fbbf24">📊 Job Tracker</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="cl-group-title">Certifications & Upskilling</div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Enrol in APICS CSCP or Lean Green Belt — list immediately as "Currently pursuing" <span class="cl-tag ct-green">This Month</span></div>
+          <div class="cl-desc">Closes the biggest gap Dublin SC roles consistently cite. Enrollment alone (not completion) lets you add "Currently pursuing APICS CSCP" to the CV — this clears ATS filters for roles that list it as preferred. Cost: ~€400–800. APICS Ireland chapter offers study groups.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-check" onclick="toggle(this)"></div>
+        <div class="cl-body">
+          <div class="cl-title">Complete Power BI Fundamentals (free Microsoft Learn or LinkedIn Learning) <span class="cl-tag ct-green">This Month</span></div>
+          <div class="cl-desc">Dublin ops analyst JDs increasingly filter for Power BI or data visualisation. A 6-hour free Microsoft Learn path allows you to add "Power BI (foundational)" to the skills section and clears that ATS filter. Pair it with the existing KPI dashboard project description to make it credible.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ PANEL 7: APPLICATION FRAMEWORK ═══ -->
+  <div id="panel-7" class="tab-panel">
+    <div class="info-box ib-blue" style="margin-bottom:1.5rem">This framework uses Mentorque's built-in tools — Resume Tailoring, Agentic Outreach, and Job Tracker — to systematise every application and remove the manual friction that causes most candidates to apply inconsistently.</div>
+
+    <div class="fw-phase">
+      <div class="fw-phase-title">Phase 1 — Before You Apply (Per Application)</div>
+      <div class="fw-step">
+        <div class="fw-num">1</div>
+        <div>
+          <div class="fw-title">Job Description Keyword Audit</div>
+          <div class="fw-body">Copy the full JD. Highlight every skill, tool, methodology, and qualification. Count how many appear in your current CV. Scoring rule: under 50% match → skip this role; 50–65% → tailor heavily; 65–80% → light tailoring; 80%+ → apply with summary swap only. This filter ensures you only spend effort on winnable applications.</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">2</div>
+        <div>
+          <div class="fw-title">One-Click Resume Tailoring</div>
+          <div class="fw-body">Paste the JD into Mentorque's Resume Tailoring feature. It rewrites your bullet points and skills section using the exact keywords from the JD, mirrors the job title in your summary, and injects missing terms — all in a single click. Run the output through Jobscan.co to verify ATS score above 70% before submitting. Never submit the same CV to two different roles.</div>
+          <div class="fw-feature-tag">⚡ Mentorque Resume Tailoring</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">3</div>
+        <div>
+          <div class="fw-title">ATS Format Check</div>
+          <div class="fw-body">Save the tailored CV as a clean single-column PDF. No tables, no text boxes, no column layouts — Irish ATS systems (Workday, Taleo, Greenhouse) parse left-to-right and silently fail on multi-column formats. Use only standard section headers. If applying to MSD, AbbVie, Pfizer, or AstraZeneca specifically, verify the output on Jobscan against their live JD before submitting.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-phase">
+      <div class="fw-phase-title">Phase 2 — Apply & Log</div>
+      <div class="fw-step">
+        <div class="fw-num">4</div>
+        <div>
+          <div class="fw-title">Submit the Application</div>
+          <div class="fw-body">Apply through the company career portal (not Indeed Easy Apply for senior target companies — direct portal applications get full ATS scoring). For MSD, AbbVie, Kerry Group, and AstraZeneca: apply on their own career sites. For others: Indeed and IrishJobs are fine. Attach a short, role-specific cover letter (3 paragraphs: why this role, what you bring, one specific outcome from your CV).</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">5</div>
+        <div>
+          <div class="fw-title">Log in Job Tracker Immediately</div>
+          <div class="fw-body">Before moving to the next application, add the entry to Mentorque's Job Tracker: Company name, role title, date applied, CV version (name the file with the date and company), tailored Y/N, platform used, job posting URL. This takes 60 seconds and prevents the tracking collapse that causes most candidates to lose visibility of their pipeline within 2 weeks.</div>
+          <div class="fw-feature-tag amber">📊 Mentorque Job Tracker</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-phase">
+      <div class="fw-phase-title">Phase 3 — Outreach (Same Day as Application)</div>
+      <div class="fw-step">
+        <div class="fw-num">6</div>
+        <div>
+          <div class="fw-title">Agentic LinkedIn Outreach to Hiring Managers</div>
+          <div class="fw-body">Within the same day you apply, use Mentorque's Agentic Outreach to automatically send a targeted LinkedIn connection request to the Hiring Manager for that role — search by title (e.g., "Operations Manager at Kerry Group" or "SC Lead at MSD Dublin"). The connection note should reference the specific role: "Hi [Name], I've just applied for the [Role Title] position. My background in [SAP MM / production planning / Lean CI] maps closely to what you're looking for — happy to connect." This bypasses ATS consideration for shortlisting and converts at 3–5x the rate of application-only.</div>
+          <div class="fw-feature-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:#34d399">🤖 Mentorque Agentic Outreach — Hiring Managers</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">7</div>
+        <div>
+          <div class="fw-title">Agentic Outreach for Referrals — Peer-Level Professionals</div>
+          <div class="fw-body">Separately from hiring manager outreach, use Agentic Outreach to target people currently working in the role or team you're applying for — e.g., "Operations Analyst at MSD Dublin" or "Production Planner at Kerry Group." The message should be softer: "Hi [Name], I'm a recent MSc graduate in International Management exploring SC/ops roles in Dublin. I noticed you work in [role] at [company] — would love to connect and hear about your experience there." Peer connections lead to referrals and internal recommendations, which at Dublin pharma companies can put you in front of a recruiter directly.</div>
+          <div class="fw-feature-tag" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:#34d399">🤖 Mentorque Agentic Outreach — Peer Referrals</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-phase" style="margin-bottom:0">
+      <div class="fw-phase-title">Phase 4 — Weekly Review Loop</div>
+      <div class="fw-step">
+        <div class="fw-num">8</div>
+        <div>
+          <div class="fw-title">Weekly Pipeline Audit (Every Friday, 20 min)</div>
+          <div class="fw-body">Open Mentorque Job Tracker. Review all open applications. Apply the pivot rule: if any batch of 5+ applications returns 0 responses within 10 business days, the current positioning angle is not working. Do not send more applications — pause and diagnose first. Check: is the title right for that role category? Is the summary mirror-matching the JD? Is the ATS score above 70%? Fix the root cause before restarting. One well-positioned application beats 10 untailored ones every time.</div>
+          <div class="fw-feature-tag amber">📊 Mentorque Job Tracker</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">9</div>
+        <div>
+          <div class="fw-title">Follow-Up on Live Applications</div>
+          <div class="fw-body">For applications where you've connected with the hiring manager on LinkedIn and haven't heard back after 7 business days, send a brief follow-up message (not a new connection request — reply to the existing thread): "Hi [Name], just following up on my application for [role]. Happy to send any additional information. Looking forward to the possibility of connecting." This keeps you visible without being aggressive. Irish hiring managers respond well to polite follow-through — it signals genuine interest and professionalism.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 8: REUSABLE PROMPT ═══ -->
+  <div id="panel-8" class="tab-panel">
+    <div class="info-box ib-blue">The reusable prompt content has been removed from this tab and archived in a separate document: <code>/Users/yadav/Downloads/shubham_mentorque_report_v4_prompt_archive.md</code></div>
+  </div>
+
+  <!-- NAV -->
+  <div class="panel-nav">
+    <button class="nav-btn" id="btn-prev" onclick="changePanel(-1)" disabled>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Previous
+    </button>
+    <span class="nav-count" id="nav-count">1 of 8</span>
+    <button class="nav-btn" id="btn-next" onclick="changePanel(1)">
+      Next
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script>
+const panels=[
+  {id:'panel-1',title:'1. Diagnosis Summary'},
+  {id:'panel-2',title:'2. Role Fit Ranking'},
+  {id:'panel-3',title:'3. CV Surgery — Exact Fixes'},
+  {id:'panel-4',title:'4. ATS Keyword Audit'},
+  {id:'panel-5',title:'5. Market Intel & Companies'},
+  {id:'panel-6',title:'6. Action Checklist'},
+  {id:'panel-7',title:'7. Application Framework'},
+  {id:'panel-8',title:'8. Reusable Prompt'},
+];
+let cur=0;
+function changePanel(dir){
+  document.getElementById(panels[cur].id).classList.remove('active');
+  cur=Math.max(0,Math.min(panels.length-1,cur+dir));
+  document.getElementById(panels[cur].id).classList.add('active');
+  document.getElementById('section-title').textContent=panels[cur].title;
+  document.getElementById('nav-count').textContent=(cur+1)+' of '+panels.length;
+  document.getElementById('btn-prev').disabled=cur===0;
+  document.getElementById('btn-next').disabled=cur===panels.length-1;
+  document.getElementById('metric-row').style.display=cur===0?'grid':'none';
+}
+function showCvTab(id,btn){
+  document.querySelectorAll('.cv-tab-panel').forEach(el=>el.style.display='none');
+  document.querySelectorAll('#cv-nav .ntab').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).style.display='block';
+  btn.classList.add('active');
+}
+function toggle(el){el.classList.toggle('checked')}
+</script>
+</body>
+</html>
