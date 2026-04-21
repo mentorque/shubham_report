@@ -70,7 +70,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#000;color:#fff;fon
 .fi-red{background:rgba(248,113,113,0.15);color:#f87171}
 .fi-amber{background:rgba(251,191,36,0.15);color:#fbbf24}
 .fi-green{background:rgba(52,211,153,0.12);color:#34d399}
-.finding-body{}
 .finding-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
 .finding-desc{font-size:12px;color:#9ca3af;line-height:1.55}
 
@@ -152,7 +151,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#000;color:#fff;fon
 .cl-check{width:20px;height:20px;border:1.5px solid rgba(255,255,255,0.2);border-radius:5px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s}
 .cl-check.checked{background:#34d399;border-color:#34d399}
 .cl-check.checked::after{content:'✓';font-size:11px;color:#000;font-weight:700}
-.cl-body{}
 .cl-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
 .cl-desc{font-size:12px;color:#9ca3af;line-height:1.55}
 .cl-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle}
@@ -173,13 +171,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#000;color:#fff;fon
 .fw-feature-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;color:#60a5fa;margin-top:6px}
 .fw-feature-tag.green{background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.2);color:#34d399}
 .fw-feature-tag.amber{background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.2);color:#fbbf24}
-
-/* ── PANEL 8: PROMPT ── */
-.prompt-box{background:rgba(255,255,255,0.02);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:1.5rem 1.75rem;font-size:13px;color:#d1d5db;line-height:1.85}
-.prompt-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#60a5fa;display:block;margin-bottom:0.75rem}
-.prompt-ph{color:#93c5fd;font-weight:600}
-.prompt-section{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.07)}
-.prompt-section-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#60a5fa;margin-bottom:6px}
 
 /* SHARED */
 .info-box{border-radius:8px;padding:0.75rem 1rem;font-size:13px;line-height:1.6;margin-bottom:12px}
@@ -958,18 +949,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#000;color:#fff;fon
     </div>
   </div>
 
-  <!-- ═══ PANEL 8: REUSABLE PROMPT ═══ -->
-  <div id="panel-8" class="tab-panel">
-    <div class="info-box ib-blue">The reusable prompt content has been removed from this tab and archived in a separate document: <code>/Users/yadav/Downloads/shubham_mentorque_report_v4_prompt_archive.md</code></div>
-  </div>
-
   <!-- NAV -->
   <div class="panel-nav">
     <button class="nav-btn" id="btn-prev" onclick="changePanel(-1)" disabled>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
       Previous
     </button>
-    <span class="nav-count" id="nav-count">1 of 8</span>
+    <span class="nav-count" id="nav-count">1 of 7</span>
     <button class="nav-btn" id="btn-next" onclick="changePanel(1)">
       Next
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -987,7 +973,6 @@ const panels=[
   {id:'panel-5',title:'5. Market Intel & Companies'},
   {id:'panel-6',title:'6. Action Checklist'},
   {id:'panel-7',title:'7. Application Framework'},
-  {id:'panel-8',title:'8. Reusable Prompt'},
 ];
 let cur=0;
 function changePanel(dir){
